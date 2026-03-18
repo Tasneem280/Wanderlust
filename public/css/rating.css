@@ -1,0 +1,41 @@
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+  font-size: 2rem;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star-rating label::before {
+  content: "★";
+}
+
+.star-rating input:checked ~ label {
+  color: gold;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: gold;
+}
+
+.star-rating label {
+  font-size: 28px;
+}
+
+.static-stars {
+  color: #ccc;
+  font-size: 22px;
+}
+
+.static-stars .filled {
+  color: gold;
+}
