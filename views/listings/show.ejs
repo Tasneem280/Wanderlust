@@ -17,7 +17,7 @@
       >
 
       <div class="card-body">
-        <p class="card-text">Owned by <i><%= listing.owner.username%></i></p>
+        <p class="card-text">Owned by <i><%= listing.owner ? listing.owner.username : 'Unknown' %></i></p>
           <p class="card-text"><%= listing.description %></p>
           <p class="card-text">&#8377; <%= listing.price.toLocaleString("en-IN") %> / night </p>
           <p class="card-text"><%= listing.location %></p>
@@ -26,30 +26,25 @@
       </div>
     </div>
 
-    <!-- Buttons -->
-      <% if(currUser && currUser._id.equals(listing.owner._id)) {%> 
+    <% if(locals.currUser && locals.currUser._id.equals(listing.owner._id)) { %> 
       <div class="d-flex gap-3 mt-3">
-      <a href="/listings/<%= listing._id %>/edit"
-         class="btn btn-danger">
-        Edit
-      </a>
+        <a href="/listings/<%= listing._id %>/edit" class="btn btn-danger">
+          Edit
+        </a>
 
-      <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-        <button class="btn btn-dark">
-          Delete
-        </button>
-      </form>
-    </div>
-    
-    
-
+        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+          <button class="btn btn-dark">
+            Delete
+          </button>
+        </form>
+      </div>
+    <% } %> 
   </div>
-   <%  } %> 
 
    
   <div class="col-12">
     <hr>
-    <% if(currUser) { %>
+    <% if(locals.currUser) { %>
 <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
   <h4>Leave a Review</h4>
     <div class="mb-3 mt-3">
